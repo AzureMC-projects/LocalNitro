@@ -10,6 +10,7 @@
   <a href="https://github.com/AzureMC-projects/LocalNitro/issues">Issues & support</a>
   · <a href="https://docs.vencord.dev/installing/custom-plugins/">Vencord custom plugin guide</a>
   · <a href="https://github.com/AzureMC-projects/LocalNitro/blob/main/CONTRIBUTING.md">Contributing</a>
+  · <a href="https://github.com/AzureMC-projects/LocalNitro/blob/main/CHANGELOG.md">Changelog</a>
 </p>
 
 > **Important:** LocalNitro does not provide Discord Nitro. It does not alter account entitlements, bypass server checks, unlock server-gated features, change upload limits, or make local changes visible to other people.
