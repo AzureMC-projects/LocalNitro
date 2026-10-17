@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible LocalNitro issue
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please redact tokens, account identifiers, private messages, and server-specific information."
+  - type: input
+    id: versions
+    attributes:
+      label: Discord and Vencord versions
+      placeholder: "Discord version / Vencord commit or version"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Windows 11"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact setting and action that triggers the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour and sanitized logs
+    validations:
+      required: true
