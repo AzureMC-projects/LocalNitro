@@ -24,6 +24,7 @@ LocalNitro is an unofficial Vencord user plugin focused on tasteful client-side 
 | Softer-corner styling | Implemented | Uses best-effort Discord CSS selectors |
 | Local-only indicator | Implemented | Optional, visible reminder |
 | Local profile concept preview | Implemented | Open from Vencord Toolbox; sample data only |
+| Public image / GIF URL preview | Implemented | HTTPS only; remote host receives a request when previewed |
 | Clean disable / unload | Implemented | Removes plugin-owned classes and attributes |
 | Profile / banner preview editor | Planned | Preview-only; no account upload or persistence |
 | Media and sticker discovery improvements | Planned | Must respect server permissions and platform rules |
@@ -64,7 +65,7 @@ Open **User Settings → Vencord → Plugins → LocalNitro**.
 - **Softer corners** — applies a subtle radius to selected UI surfaces.
 - **Show local-only notice** — displays a small reminder in the corner of the client.
 
-To open the sample profile mockup, open the Vencord Toolbox and choose **Toggle local profile preview**. The preview uses fixed sample content; it does not read or modify your real profile, upload images, or persist changes.
+To open the sample profile mockup, open the Vencord Toolbox and choose **Toggle local profile preview**. The preview uses fixed sample content; it does not read or modify your real profile, upload images, or persist changes. For a public image or GIF, choose **Open local media preview** and enter an HTTPS URL. The remote host receives a request when you preview the URL; avoid private or sensitive links.
 
 Settings are intended to update without a restart. If a setting does not appear or apply, check the Vencord console for errors and confirm the plugin is in the correct folder.
 
@@ -73,7 +74,7 @@ Settings are intended to update without a restart. If a setting does not appear 
 - [x] **Phase 1 — Foundation:** plugin scaffold, settings, clean lifecycle, documentation.
 - [x] **Phase 2 — Visual identity:** palette presets, restrained surface styling, local-only notice.
 - [x] **Phase 3 — Local preview tools:** a sample profile/banner/avatar concept mockup that never uploads or changes account data.
-- [ ] **Phase 4 — Media quality of life:** permission-respecting discovery and preview enhancements.
+- [x] **Phase 4 — Media quality of life (starter):** an explicit, HTTPS-only public image/GIF preview utility. Discord sticker discovery and entitlement-aware integrations remain out of scope until they can be implemented and tested against supported APIs.
 - [ ] **Phase 5 — Reliability:** test against current Vencord, improve compatibility fallbacks, publish verified screenshots and release notes.
 
 Phases 3–5 are not represented as finished features yet. They require implementation and testing against a real Vencord checkout; this repository should not claim them until verified.
