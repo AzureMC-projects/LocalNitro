@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import "./styles.css";
+
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
@@ -25,7 +27,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "LocalNitro",
     description: "Local-only cosmetic previews and quality-of-life enhancements. Does not grant Discord Nitro or bypass server-side entitlement checks.",
-    authors: [Devs.Vencord],
+    authors: [{ name: "AzureMC-projects", id: 0n, badge: false }],
     tags: ["Appearance", "Utility"],
     settings,
 
