@@ -6,11 +6,11 @@
 :root.localnitro-theme {
     --localnitro-accent: #8b5cf6;
     --localnitro-accent-soft: color-mix(in srgb, var(--localnitro-accent) 18%, transparent);
-}
-
-/* An intentionally subtle local visual cue; does not impersonate Discord's Nitro badge. */
-:root.localnitro-theme .appMount__51fd7 {
-    --localnitro-local-theme-enabled: 1;
+    /* Discord's brand variables have changed between client releases. */
+    --brand-500: #8b5cf6;
+    --brand-560: #7c3aed;
+    --brand-experiment: #8b5cf6;
+    --brand-experiment-560: #7c3aed;
 }
 
 /* Keep the notice confined to the local client and avoid changing message content. */
