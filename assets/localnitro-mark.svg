@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">LocalNitro mark</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#6d28d9"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="116" height="116" rx="30" fill="#171522"/>
+  <rect x="15" y="15" width="98" height="98" rx="24" fill="url(#g)" opacity=".18"/>
+  <path d="M72 17 38 69h23l-5 42 35-56H67z" fill="url(#g)"/>
+  <path d="M25 93h18" stroke="#c4b5fd" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+</svg>
