@@ -1,45 +1,71 @@
 /*
- * LocalNitro — a local-only Vencord user plugin.
+ * LocalNitro — local-only Vencord cosmetics.
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./styles.css";
 
 import { definePluginSettings } from "@api/Settings";
-import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
+
+function syncAppearance() {
+    const root = document.documentElement;
+    const { enableLocalTheme, accentPreset, softCorners, showLocalNotice } = settings.store;
+
+    root.classList.toggle("localnitro-theme", enableLocalTheme);
+    root.classList.toggle("localnitro-soft-corners", enableLocalTheme && softCorners);
+    root.classList.toggle("localnitro-notice", showLocalNotice);
+    root.dataset.localnitroPalette = accentPreset;
+}
 
 const settings = definePluginSettings({
     enableLocalTheme: {
-        description: "Apply the LocalNitro cosmetic theme to your Discord client only",
-        type: OptionType.BOOLEAN,
-        default: false,
-        restartNeeded: true
-    },
-    showLocalNotice: {
-        description: "Show a small local-only notice in the client theme",
+        displayName: "Enable local theme",
+        description: "Apply a cosmetic accent theme to this Discord client only.",
         type: OptionType.BOOLEAN,
         default: true,
-        restartNeeded: true
+        onChange: syncAppearance
+    },
+    accentPreset: {
+        displayName: "Accent palette",
+        description: "Choose the accent colour used by the local theme.",
+        type: OptionType.SELECT,
+        options: [
+            { label: "Violet", value: "violet", default: true },
+            { label: "Ocean", value: "ocean" },
+            { label: "Rose", value: "rose" },
+            { label: "Mint", value: "mint" }
+        ],
+        onChange: syncAppearance
+    },
+    softCorners: {
+        displayName: "Softer corners",
+        description: "Gently round selected client surfaces where Discord's CSS allows it.",
+        type: OptionType.BOOLEAN,
+        default: true,
+        onChange: syncAppearance
+    },
+    showLocalNotice: {
+        displayName: "Show local-only notice",
+        description: "Display a small notice reminding you these changes are client-side only.",
+        type: OptionType.BOOLEAN,
+        default: true,
+        onChange: syncAppearance
     }
 });
 
 export default definePlugin({
     name: "LocalNitro",
-    description: "Local-only cosmetic previews and quality-of-life enhancements. Does not grant Discord Nitro or bypass server-side entitlement checks.",
-    authors: [{ name: "AzureMC-projects", id: 0n, badge: false }],
-    tags: ["Appearance", "Utility"],
+    description: "Polished, local-only Discord cosmetics. Does not grant Nitro or bypass server-side entitlement checks.",
+    authors: [{ name: "AzureMC-projects", id: 0n }],
+    tags: ["Appearance", "Customisation", "Utility"],
     settings,
 
-    start() {
-        if (settings.store.enableLocalTheme)
-            document.documentElement.classList.add("localnitro-theme");
-
-        if (settings.store.showLocalNotice)
-            document.documentElement.classList.add("localnitro-notice");
-    },
+    start: syncAppearance,
 
     stop() {
-        document.documentElement.classList.remove("localnitro-theme", "localnitro-notice");
+        const root = document.documentElement;
+        root.classList.remove("localnitro-theme", "localnitro-soft-corners", "localnitro-notice");
+        delete root.dataset.localnitroPalette;
     }
 });
