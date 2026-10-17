@@ -1,0 +1,31 @@
+/*
+ * LocalNitro styles are cosmetic and affect only this client.
+ * No server entitlements, account flags, or upload limits are changed.
+ */
+
+:root.localnitro-theme {
+    --localnitro-accent: #8b5cf6;
+    --localnitro-accent-soft: color-mix(in srgb, var(--localnitro-accent) 18%, transparent);
+}
+
+/* An intentionally subtle local visual cue; does not impersonate Discord's Nitro badge. */
+:root.localnitro-theme .appMount__51fd7 {
+    --localnitro-local-theme-enabled: 1;
+}
+
+/* Keep the notice confined to the local client and avoid changing message content. */
+:root.localnitro-notice::after {
+    content: "LocalNitro · local cosmetics only";
+    position: fixed;
+    right: 12px;
+    bottom: 10px;
+    z-index: 9999;
+    padding: 4px 8px;
+    border: 1px solid var(--background-modifier-accent, #4b4b58);
+    border-radius: 6px;
+    color: var(--text-muted, #b5bac1);
+    background: var(--background-secondary, #2b2d31);
+    font: 11px/1.4 var(--font-primary, sans-serif);
+    opacity: 0.8;
+    pointer-events: none;
+}
