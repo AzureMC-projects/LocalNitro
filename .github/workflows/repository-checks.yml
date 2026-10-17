@@ -1,0 +1,31 @@
+name: Repository checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  whitespace:
+    name: Whitespace and conflict-marker checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check trailing whitespace
+        shell: bash
+        run: |
+          if git grep -nI -E '[[:blank:]]+$' -- '*.ts' '*.css' '*.md' '*.yml' '*.yaml'; then
+            echo "Trailing whitespace found."
+            exit 1
+          fi
+      - name: Check merge-conflict markers
+        shell: bash
+        run: |
+          if git grep -nI -E '^(<<<<<<< |=======|>>>>>>> )' -- '*.ts' '*.css' '*.md' '*.yml' '*.yaml'; then
+            echo "Merge-conflict markers found."
+            exit 1
+          fi
