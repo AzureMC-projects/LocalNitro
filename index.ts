@@ -77,6 +77,93 @@ function toggleProfilePreview() {
     close.focus();
 }
 
+function openMediaPreview() {
+    const overlay = document.createElement("div");
+    overlay.className = "localnitro-preview-backdrop";
+
+    const dialog = document.createElement("section");
+    dialog.className = "localnitro-preview-card localnitro-media-card";
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    dialog.setAttribute("aria-labelledby", "localnitro-media-title");
+
+    const title = document.createElement("h2");
+    title.id = "localnitro-media-title";
+    title.className = "localnitro-media-title";
+    title.textContent = "Media preview";
+
+    const description = document.createElement("p");
+    description.className = "localnitro-preview-description";
+    description.textContent = "Preview a public image or GIF by HTTPS URL. The remote host will receive a request when you preview it; do not use private or sensitive links.";
+
+    const form = document.createElement("form");
+    form.className = "localnitro-media-form";
+
+    const input = document.createElement("input");
+    input.type = "url";
+    input.required = true;
+    input.placeholder = "https://example.com/image.gif";
+    input.autocomplete = "url";
+    input.setAttribute("aria-label", "Public HTTPS image or GIF URL");
+
+    const preview = document.createElement("button");
+    preview.type = "submit";
+    preview.textContent = "Preview media";
+
+    const status = document.createElement("p");
+    status.className = "localnitro-media-status";
+    status.setAttribute("role", "status");
+
+    const image = document.createElement("img");
+    image.className = "localnitro-media-image";
+    image.alt = "User-selected media preview";
+    image.hidden = true;
+    image.referrerPolicy = "no-referrer";
+    image.addEventListener("error", () => {
+        status.textContent = "Couldn't load that image. Check the URL and whether the host allows direct image access.";
+        image.hidden = true;
+    });
+    image.addEventListener("load", () => {
+        status.textContent = "Preview loaded. This is only a local display; nothing was uploaded to Discord.";
+        image.hidden = false;
+    });
+
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        let parsed: URL;
+        try {
+            parsed = new URL(input.value);
+        } catch {
+            status.textContent = "Enter a valid HTTPS URL.";
+            return;
+        }
+
+        if (parsed.protocol !== "https:") {
+            status.textContent = "Only HTTPS URLs are supported.";
+            return;
+        }
+
+        status.textContent = "Loading preview…";
+        image.hidden = true;
+        image.src = parsed.href;
+    });
+
+    const close = document.createElement("button");
+    close.className = "localnitro-preview-close";
+    close.type = "button";
+    close.textContent = "Close";
+    close.addEventListener("click", () => overlay.remove());
+
+    form.append(input, preview);
+    dialog.append(title, description, form, status, image, close);
+    overlay.append(dialog);
+    overlay.addEventListener("click", event => {
+        if (event.target === overlay) overlay.remove();
+    });
+    document.body.append(overlay);
+    input.focus();
+}
+
 function syncAppearance() {
     const root = document.documentElement;
     const { enableLocalTheme, accentPreset, softCorners, showLocalNotice } = settings.store;
@@ -131,7 +218,8 @@ export default definePlugin({
     settings,
 
     toolboxActions: {
-        "Toggle local profile preview": toggleProfilePreview
+        "Toggle local profile preview": toggleProfilePreview,
+        "Open local media preview": openMediaPreview
     },
 
     start: syncAppearance,
