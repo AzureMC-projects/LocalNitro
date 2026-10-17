@@ -230,5 +230,6 @@ export default definePlugin({
         delete root.dataset.localnitroPalette;
         profilePreview?.remove();
         profilePreview = undefined;
+        document.querySelectorAll(".localnitro-preview-backdrop").forEach(element => element.remove());
     }
 });
