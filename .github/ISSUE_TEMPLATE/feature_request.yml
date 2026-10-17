@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a local-only cosmetic or quality-of-life improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Requests must remain transparent, local-first, and must not bypass server-side entitlements or permissions."
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What friction or cosmetic limitation would this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Project principles
+      options:
+        - label: This feature can work without changing server-side account data or permissions.
+          required: true
+        - label: This feature does not require collecting or transmitting Discord tokens.
+          required: true
