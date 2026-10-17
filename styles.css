@@ -66,3 +66,108 @@
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* Local mock profile preview, opened from the Vencord Toolbox. */
+.localnitro-preview-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgb(8 8 12 / 72%);
+    backdrop-filter: blur(8px);
+}
+
+.localnitro-preview-card {
+    position: relative;
+    width: min(440px, 100%);
+    overflow: hidden;
+    border: 1px solid var(--background-modifier-accent, #4b4b58);
+    border-radius: 18px;
+    color: var(--header-primary, #f2f3f5);
+    background: var(--background-floating, #232428);
+    box-shadow: 0 24px 80px rgb(0 0 0 / 38%);
+}
+
+.localnitro-preview-banner {
+    height: 116px;
+    background:
+        radial-gradient(circle at 78% 20%, rgb(255 255 255 / 24%), transparent 27%),
+        linear-gradient(120deg, var(--localnitro-accent, #8b5cf6), #272044 70%);
+}
+
+.localnitro-preview-avatar {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    margin: -38px 0 0 22px;
+    place-items: center;
+    border: 6px solid var(--background-floating, #232428);
+    border-radius: 50%;
+    color: white;
+    background: linear-gradient(135deg, var(--localnitro-accent, #8b5cf6), #30264f);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: .04em;
+}
+
+.localnitro-preview-heading {
+    padding: 12px 22px 0;
+}
+
+.localnitro-preview-heading h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.localnitro-preview-heading p {
+    margin: 3px 0 12px;
+    color: var(--text-muted, #b5bac1);
+    font-size: 13px;
+}
+
+.localnitro-preview-label {
+    display: inline-flex;
+    padding: 4px 7px;
+    border: 1px solid var(--localnitro-accent, #8b5cf6);
+    border-radius: 5px;
+    color: var(--localnitro-accent, #8b5cf6);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+.localnitro-preview-description {
+    margin: 16px 22px;
+    color: var(--text-muted, #b5bac1);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.localnitro-preview-close {
+    display: block;
+    margin: 0 22px 22px auto;
+    padding: 9px 13px;
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background: var(--localnitro-accent-strong, #7c3aed);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.localnitro-preview-close:focus-visible {
+    outline: 2px solid var(--localnitro-accent, #8b5cf6);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .localnitro-preview-backdrop {
+        backdrop-filter: none;
+    }
+}
